@@ -17,7 +17,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Node
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
@@ -25,12 +25,12 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build Vite app
+      - name: Build project
         run: npm run build
 
-      # Upload the built files to GitHub Pages artifact storage
+      # Upload the "dist" folder to GitHub Pages Artifact storage
       - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v2
+        uses: actions/upload-pages-artifact@v3
         with:
           path: dist
 
@@ -44,4 +44,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deploy
-        uses: actions/deploy-pages@v2
+        uses: actions/deploy-pages@v4
